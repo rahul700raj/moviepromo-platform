@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= movie.title %> - MoviePromo</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <%- include('partials/navbar') %>
+  
+  <div class="movie-detail-container">
+    <div class="movie-header">
+      <img src="<%= movie.poster || '/images/placeholder.jpg' %>" alt="<%= movie.title %>" class="movie-poster-large">
+      <div class="movie-header-info">
+        <h1><%= movie.title %></h1>
+        <div class="movie-meta">
+          <span class="genre-badge"><%= movie.genre %></span>
+          <span><i class="fas fa-calendar"></i> <%= movie.releaseDate || 'Coming Soon' %></span>
+        </div>
+        <div class="movie-stats-large">
+          <div class="stat">
+            <i class="fas fa-eye"></i>
+            <span><%= movie.views %> Views</span>
+          </div>
+          <div class="stat">
+            <i class="fas fa-heart"></i>
+            <span><%= movie.likes %> Likes</span>
+          </div>
+        </div>
+        <p class="movie-description"><%= movie.description %></p>
+        <div class="movie-credits">
+          <p><strong>Director:</strong> <%= movie.director %></p>
+          <% if (movie.cast) { %>
+            <p><strong>Cast:</strong> <%= movie.cast %></p>
+          <% } %>
+        </div>
+      </div>
+    </div>
+
+    <div class="movie-story">
+      <h2>Story</h2>
+      <p><%= movie.story %></p>
+    </div>
+
+    <% if (movie.trailer) { %>
+    <div class="movie-trailer">
+      <h2>Trailer</h2>
+      <video controls width="100%">
+        <source src="<%= movie.trailer %>" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <% } %>
+  </div>
+
+  <%- include('partials/footer') %>
+</body>
+</html>
