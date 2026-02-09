@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - MoviePromo</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <%- include('partials/navbar') %>
+  
+  <div class="dashboard-container">
+    <div class="dashboard-header">
+      <h1>Welcome, <%= user.name %>!</h1>
+      <div class="credits-info">
+        <% if (user.isPaid) { %>
+          <span class="badge badge-premium"><i class="fas fa-crown"></i> Premium Member</span>
+        <% } else { %>
+          <span class="badge badge-credits"><i class="fas fa-ticket-alt"></i> <%= user.credits %> Credits Left</span>
+          <% if (user.credits === 0) { %>
+            <a href="/pricing" class="btn btn-primary btn-small">Upgrade Now</a>
+          <% } %>
+        <% } %>
+      </div>
+    </div>
+
+    <div class="dashboard-stats">
+      <div class="stat-card">
+        <i class="fas fa-film"></i>
+        <h3><%= movies.length %></h3>
+        <p>Total Movies</p>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-eye"></i>
+        <h3><%= movies.reduce((sum, m) => sum + m.views, 0) %></h3>
+        <p>Total Views</p>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-heart"></i>
+        <h3><%= movies.reduce((sum, m) => sum + m.likes, 0) %></h3>
+        <p>Total Likes</p>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-chart-line"></i>
+        <h3><%= movies.length > 0 ? Math.round(movies.reduce((sum, m) => sum + m.views, 0) / movies.length) : 0 %></h3>
+        <p>Avg Views/Movie</p>
+      </div>
+    </div>
+
+    <div class="dashboard-actions">
+      <a href="/upload" class="btn btn-primary"><i class="fas fa-upload"></i> Upload New Movie</a>
+      <a href="/marketing" class="btn btn-secondary"><i class="fas fa-bullhorn"></i> Marketing Tools</a>
+      <a href="/analytics" class="btn btn-secondary"><i class="fas fa-chart-bar"></i> Analytics</a>
+    </div>
+
+    <div class="movies-section">
+      <h2>Your Movies</h2>
+      <% if (movies.length === 0) { %>
+        <div class="empty-state">
+          <i class="fas fa-film"></i>
+          <p>You haven't uploaded any movies yet</p>
+          <a href="/upload" class="btn btn-primary">Upload Your First Movie</a>
+        </div>
+      <% } else { %>
+        <div class="movies-grid">
+          <% movies.forEach(movie => { %>
+            <div class="movie-card">
+              <img src="<%= movie.poster || '/images/placeholder.jpg' %>" alt="<%= movie.title %>">
+              <div class="movie-info">
+                <h3><%= movie.title %></h3>
+                <p><%= movie.genre %></p>
+                <div class="movie-stats">
+                  <span><i class="fas fa-eye"></i> <%= movie.views %></span>
+                  <span><i class="fas fa-heart"></i> <%= movie.likes %></span>
+                </div>
+                <a href="/movie/<%= movie.id %>" class="btn btn-small">View Details</a>
+              </div>
+            </div>
+          <% }); %>
+        </div>
+      <% } %>
+    </div>
+  </div>
+
+  <%- include('partials/footer') %>
+</body>
+</html>
