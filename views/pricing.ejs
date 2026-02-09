@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing - MoviePromo</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <%- include('partials/navbar') %>
+  
+  <div class="pricing-container">
+    <h1>Choose Your Plan</h1>
+    <p class="subtitle">Unlimited uploads and premium marketing features</p>
+    
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="plan-header">
+          <h3>Monthly Plan</h3>
+          <div class="price">
+            <span class="currency">₹</span>
+            <span class="amount">999</span>
+            <span class="period">/month</span>
+          </div>
+        </div>
+        <ul class="plan-features">
+          <li><i class="fas fa-check"></i> Unlimited Movie Uploads</li>
+          <li><i class="fas fa-check"></i> Digital Marketing Tools</li>
+          <li><i class="fas fa-check"></i> Organic Marketing Support</li>
+          <li><i class="fas fa-check"></i> Advanced Analytics</li>
+          <li><i class="fas fa-check"></i> Priority Support</li>
+          <li><i class="fas fa-check"></i> Social Media Integration</li>
+        </ul>
+        <form action="/subscribe" method="POST">
+          <input type="hidden" name="plan" value="monthly">
+          <button type="submit" class="btn btn-primary">Subscribe Monthly</button>
+        </form>
+      </div>
+
+      <div class="pricing-card featured">
+        <div class="badge-popular">Most Popular</div>
+        <div class="plan-header">
+          <h3>Yearly Plan</h3>
+          <div class="price">
+            <span class="currency">₹</span>
+            <span class="amount">9,999</span>
+            <span class="period">/year</span>
+          </div>
+          <p class="savings">Save ₹2,000 (17% off)</p>
+        </div>
+        <ul class="plan-features">
+          <li><i class="fas fa-check"></i> Everything in Monthly</li>
+          <li><i class="fas fa-check"></i> 2 Months Free</li>
+          <li><i class="fas fa-check"></i> Premium Marketing Campaigns</li>
+          <li><i class="fas fa-check"></i> Dedicated Account Manager</li>
+          <li><i class="fas fa-check"></i> Featured Placement</li>
+          <li><i class="fas fa-check"></i> Custom Branding</li>
+        </ul>
+        <form action="/subscribe" method="POST">
+          <input type="hidden" name="plan" value="yearly">
+          <button type="submit" class="btn btn-primary">Subscribe Yearly</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="payment-info">
+      <h3><i class="fas fa-shield-alt"></i> Secure Auto-Payment</h3>
+      <p>Your subscription will automatically renew. Cancel anytime from your dashboard.</p>
+      <div class="payment-methods">
+        <i class="fab fa-cc-visa"></i>
+        <i class="fab fa-cc-mastercard"></i>
+        <i class="fab fa-cc-amex"></i>
+        <i class="fas fa-university"></i>
+        <span>UPI</span>
+      </div>
+    </div>
+  </div>
+
+  <%- include('partials/footer') %>
+</body>
+</html>
