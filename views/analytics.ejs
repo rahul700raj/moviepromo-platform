@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics - MoviePromo</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <%- include('partials/navbar') %>
+  
+  <div class="analytics-container">
+    <h1>Analytics Dashboard</h1>
+    <p class="subtitle">Track your movie performance and audience engagement</p>
+
+    <div class="analytics-overview">
+      <div class="analytics-card">
+        <i class="fas fa-film"></i>
+        <h3><%= movies.length %></h3>
+        <p>Total Movies</p>
+      </div>
+      <div class="analytics-card">
+        <i class="fas fa-eye"></i>
+        <h3><%= totalViews %></h3>
+        <p>Total Views</p>
+      </div>
+      <div class="analytics-card">
+        <i class="fas fa-heart"></i>
+        <h3><%= totalLikes %></h3>
+        <p>Total Likes</p>
+      </div>
+      <div class="analytics-card">
+        <i class="fas fa-percentage"></i>
+        <h3><%= totalViews > 0 ? Math.round((totalLikes / totalViews) * 100) : 0 %>%</h3>
+        <p>Engagement Rate</p>
+      </div>
+    </div>
+
+    <div class="movie-performance">
+      <h2>Movie Performance</h2>
+      <table class="analytics-table">
+        <thead>
+          <tr>
+            <th>Movie Title</th>
+            <th>Genre</th>
+            <th>Views</th>
+            <th>Likes</th>
+            <th>Engagement</th>
+            <th>Upload Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% movies.forEach(movie => { %>
+            <tr>
+              <td><strong><%= movie.title %></strong></td>
+              <td><%= movie.genre %></td>
+              <td><i class="fas fa-eye"></i> <%= movie.views %></td>
+              <td><i class="fas fa-heart"></i> <%= movie.likes %></td>
+              <td><%= movie.views > 0 ? Math.round((movie.likes / movie.views) * 100) : 0 %>%</td>
+              <td><%= new Date(movie.createdAt).toLocaleDateString() %></td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <%- include('partials/footer') %>
+</body>
+</html>
