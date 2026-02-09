@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Movie - MoviePromo</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <%- include('partials/navbar') %>
+  
+  <div class="upload-container">
+    <h1>Upload Your Movie</h1>
+    <p class="subtitle">Share your story with millions of movie lovers</p>
+    
+    <form action="/upload" method="POST" enctype="multipart/form-data" class="upload-form">
+      <div class="form-group">
+        <label for="title"><i class="fas fa-film"></i> Movie Title *</label>
+        <input type="text" id="title" name="title" required placeholder="Enter movie title">
+      </div>
+
+      <div class="form-group">
+        <label for="genre"><i class="fas fa-tags"></i> Genre *</label>
+        <select id="genre" name="genre" required>
+          <option value="">Select Genre</option>
+          <option value="Action">Action</option>
+          <option value="Comedy">Comedy</option>
+          <option value="Drama">Drama</option>
+          <option value="Horror">Horror</option>
+          <option value="Romance">Romance</option>
+          <option value="Thriller">Thriller</option>
+          <option value="Sci-Fi">Sci-Fi</option>
+          <option value="Documentary">Documentary</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="director"><i class="fas fa-user"></i> Director Name *</label>
+        <input type="text" id="director" name="director" required placeholder="Director name">
+      </div>
+
+      <div class="form-group">
+        <label for="cast"><i class="fas fa-users"></i> Cast</label>
+        <input type="text" id="cast" name="cast" placeholder="Main cast members (comma separated)">
+      </div>
+
+      <div class="form-group">
+        <label for="releaseDate"><i class="fas fa-calendar"></i> Release Date</label>
+        <input type="date" id="releaseDate" name="releaseDate">
+      </div>
+
+      <div class="form-group">
+        <label for="description"><i class="fas fa-align-left"></i> Short Description *</label>
+        <textarea id="description" name="description" required rows="3" placeholder="Brief description for promotional purposes"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="story"><i class="fas fa-book"></i> Full Story *</label>
+        <textarea id="story" name="story" required rows="8" placeholder="Tell your complete movie story here..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="poster"><i class="fas fa-image"></i> Movie Poster *</label>
+        <input type="file" id="poster" name="poster" accept="image/*" required>
+        <small>Upload a high-quality poster (JPG, PNG)</small>
+      </div>
+
+      <div class="form-group">
+        <label for="trailer"><i class="fas fa-video"></i> Trailer (Optional)</label>
+        <input type="file" id="trailer" name="trailer" accept="video/*">
+        <small>Upload trailer video (MP4, MOV)</small>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary"><i class="fas fa-upload"></i> Upload Movie</button>
+        <a href="/dashboard" class="btn btn-secondary">Cancel</a>
+      </div>
+    </form>
+  </div>
+
+  <%- include('partials/footer') %>
+</body>
+</html>
